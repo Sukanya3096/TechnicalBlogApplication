@@ -32,4 +32,18 @@ public class PostService {
 
         return posts;
     }
+
+    public ArrayList<PostModel> getOnePost() {
+        ArrayList<PostModel> posts = new ArrayList<>();
+
+        PostModel post1 = new PostModel();
+        post1.setTitle("This is your Post");
+        post1.setBody("This is your Post. It has some valid content");
+        post1.setDate(new Date());
+        posts.add(post1);
+
+        return posts;
+
+    }
+
 }
