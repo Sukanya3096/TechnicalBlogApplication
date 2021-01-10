@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import techicalblog.model.PostModel;
 import techicalblog.service.PostService;
 
@@ -15,8 +16,19 @@ public class PostController {
 
     @RequestMapping("posts")
     public String getUserPosts(Model model) {
-        ArrayList<PostModel> posts = postService.getOnePost();
+        ArrayList<PostModel> posts = new ArrayList<>();
+        PostModel latestPost = postService.getOnePost();
+        posts.add(latestPost);
         model.addAttribute("posts", posts);
         return "posts";
+    }
+    @RequestMapping("/posts/newpost")
+    public String newPost() {
+        return "posts/create";
+    }
+    @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
+    public String createPost(PostModel newPost) {
+        postService.createPost(newPost);
+        return "redirect:/posts";
     }
 }
