@@ -26,9 +26,24 @@ public class PostService {
         return repository.getLatestPost();
 
     }
-    public void createPost (PostModel newPost){
-        ArrayList<PostModel> posts = new ArrayList<>();
-        posts.add(newPost);
+
+    public void createPost(PostModel newPost) {
+        newPost.setDate(new Date());
+        repository.createPost(newPost);
+        System.out.println("New Post: "+newPost);
+    }
+
+    public PostModel getPost(Integer postId) {
+        return repository.getPost(postId);
+    }
+
+    public void updatePost(PostModel updatedPost) {
+        updatedPost.setDate(new Date());
+        repository.updatePost(updatedPost);
+    }
+
+    public void deletePost(Integer postId) {
+        repository.deletePost(postId);
     }
 
 }

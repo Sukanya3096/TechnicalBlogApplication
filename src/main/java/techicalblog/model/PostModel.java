@@ -10,6 +10,7 @@ import java.util.List;
 public class PostModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
@@ -19,7 +20,7 @@ public class PostModel {
     @Column(name = "body")
     private String body;
 
-    @Transient
+    @Column(name = "date")
     private Date date;
 
 
